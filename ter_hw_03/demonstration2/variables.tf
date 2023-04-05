@@ -33,5 +33,5 @@ variable "vpc_name" {
 
 variable "public_key" {
   type    = string
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7G3Q7qhjk+7/ne6W7hFUm9Lba2mPx8pxhdwYo9rB06WdNAMMuxYk774uxSH5grJodC2Tz338/pe2SkLUcdyFnwrZItJTKH75icZ2kL3f3arhScFwO3+6vw7E1JTDkJ9Nf4m98kr6eTlWpqzq0J1k6Uh+9TtUY0UjRq1uvkM9c67hHM8Nl3vNU0GSKYGH+izSnpN7A6FjXVcJvtvAIhCyRdBfka/XvVS8Zh6cJLmLbc+4NQvMtuBbpOmCadp+QOra/cEcVZGPyTVYd5x8xkU5CYqqpxTy/3MLGhMSp0B7E1Myk9cWpCYooyU3r7WqaDr6WHxwxEX53AHpH35hPXp2okVMrVnahOhwhXay2PSr+0H/9Zjh8IERdUNX5QVILORIBpH7JqsFcgV3W+JKyx6MbkZVCQwo+rGnCnij08jhIu3mOQoK+hbPX5l+ZfHO0k+M4d/cm6X7b0nPXVZVESI62jYTtzTD8G69z6svjBZM0GqsNQwztB5+7wr8qhYXyb58= tim@tim"
+  default = "ssh_key"
 }
