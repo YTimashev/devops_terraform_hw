@@ -17,8 +17,14 @@ resource "yandex_compute_instance" "db" {
     }
   }
 
+  /*
   metadata = {
     ssh-keys = "ubuntu:${var.public_key}"
+  }
+*/
+
+  metadata = {
+    ssh-keys = "ubuntu:${local.file_content}"
   }
 
   scheduling_policy { preemptible = true }

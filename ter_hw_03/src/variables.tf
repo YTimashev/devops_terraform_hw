@@ -31,7 +31,9 @@ variable "vpc_name" {
   description = "VPC network&subnet name"
 }
 
+/*
 variable "public_key" {
   type    = string
-  default = "ubuntu:<your_ssh_ed25519_key>"
+  default = "ubuntu:~/.ssh/id_rsa.pub"
 }
+*/

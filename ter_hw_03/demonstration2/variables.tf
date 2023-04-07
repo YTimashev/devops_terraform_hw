@@ -33,5 +33,6 @@ variable "vpc_name" {
 
 variable "public_key" {
   type    = string
-  default = "ssh_key"
+  default = "ubuntu:your_ssh_public_key>"
+  #default = ""
 }

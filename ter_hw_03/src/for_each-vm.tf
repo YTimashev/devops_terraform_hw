@@ -2,19 +2,7 @@ resource "yandex_compute_instance" "web" {
   #Ждем создания инстанса db
   depends_on = [yandex_compute_instance.db]
 
-  /*
-  for_each = {
-    0 = "first"
-    1 = "second"
-  }
-  name = "netology-develop-platform-web-${each.key}"
-
-  tags = {
-    Name = "${each.value}"
-  }
-*/
-  #for_each = var.resources_web
-  for_each = { for idx, val in var.resources_web : idx => val }
+  for_each = { for key, val in var.resources_web : key => val }
   name     = "netology-develop-platform-web-${each.value.vm_name}"
 
   resources {
@@ -31,8 +19,14 @@ resource "yandex_compute_instance" "web" {
     }
   }
 
+  /*
   metadata = {
     ssh-keys = "ubuntu:${var.public_key}"
+  }
+*/
+
+  metadata = {
+    ssh-keys = "ubuntu:${local.file_content}"
   }
 
   scheduling_policy { preemptible = true }
@@ -74,4 +68,11 @@ variable "resources_web" {
       core_fraction = 20
     }
   ]
+}
+
+
+#file(path): читает содержимое файла по заданному пути и возвращает его в виде строки
+locals {
+  #file_content = "${file(~/.ssh/id_rsa.pub)}"
+  file_content = file("~/.ssh/id_rsa.pub")
 }
