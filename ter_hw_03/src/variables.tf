@@ -37,3 +37,40 @@ variable "public_key" {
   default = "ubuntu:~/.ssh/id_rsa.pub"
 }
 */
+
+variable "resources_web" {
+  description = "Ресурсы BM web"
+  type = list(object(
+    {
+      vm_name       = string
+      cpu           = number
+      ram           = number
+      disk          = number
+      core_fraction = number
+    }
+  ))
+
+  default = [
+    {
+      vm_name       = "first"
+      cpu           = 2
+      ram           = 1
+      disk          = 5
+      core_fraction = 5
+    },
+    {
+      vm_name       = "second"
+      cpu           = 4
+      ram           = 2
+      disk          = 8
+      core_fraction = 20
+    }
+  ]
+}
+
+
+#file(path): читает содержимое файла по заданному пути и возвращает его в виде строки
+locals {
+  #file_content = "${file(~/.ssh/id_rsa.pub)}"
+  file_content = file("~/.ssh/id_rsa.pub")
+}
