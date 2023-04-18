@@ -1,7 +1,7 @@
-/*
 
+#Создаем ВМ
 resource "yandex_compute_instance" "vm_fri_disks" {
-  name        = "vm_fri_disks"
+  name        = "vm-fri-disks"
   platform_id = "standard-v1"
 
   resources {
@@ -10,6 +10,7 @@ resource "yandex_compute_instance" "vm_fri_disks" {
     core_fraction = 5
   }
 
+
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu-2004-lts.image_id
@@ -17,6 +18,7 @@ resource "yandex_compute_instance" "vm_fri_disks" {
       size     = 5
     }
   }
+
 
   metadata = {
     ssh-keys = "ubuntu:${local.file_content}"
@@ -30,14 +32,19 @@ resource "yandex_compute_instance" "vm_fri_disks" {
   }
   allow_stopping_for_update = true
 
+
+  #Подключаем дополнительный диск
   dynamic "secondary_disk" {
-    for_each = var.volumes
+    for_each = toset([0, 1, 2])
     content {
-      disk_id = yandex_compute_disk.volume.id
+      disk_id     = yandex_compute_disk.volume[0].id
+      auto_delete = true
     }
   }
 }
 
+
+# создаем 3 дополнительных диска
 resource "yandex_compute_disk" "volume" {
   count = 3
   name  = "disk-${count.index}"
@@ -46,8 +53,11 @@ resource "yandex_compute_disk" "volume" {
   size  = 1
 }
 
+
+/*
+#Переменная - дополнительные диски
 variable "volumes" {
-  type    = 
-  default = ""
+  type    = list(string)
+  default = ["disk-0", "disk-1", "disk-2"]
 }
 */

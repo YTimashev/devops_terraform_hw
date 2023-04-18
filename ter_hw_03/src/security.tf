@@ -13,19 +13,19 @@ variable "security_group_ingress" {
     {
       protocol       = "TCP"
       description    = "разрешить входящий ssh"
-      v4_cidr_blocks = ["0.0.0.0/0"]
+      v4_cidr_blocks = ["10.0.1.0/24"]
       port           = 22
     },
     {
       protocol       = "TCP"
       description    = "разрешить входящий  http"
-      v4_cidr_blocks = ["0.0.0.0/0"]
+      v4_cidr_blocks = ["10.0.1.0/24"]
       port           = 80
     },
     {
       protocol       = "TCP"
       description    = "разрешить входящий https"
-      v4_cidr_blocks = ["0.0.0.0/0"]
+      v4_cidr_blocks = ["10.0.1.0/24"]
       port           = 443
     },
   ]
@@ -44,10 +44,10 @@ variable "security_group_egress" {
       to_port        = optional(number)
   }))
   default = [
-    { 
+    {
       protocol       = "TCP"
       description    = "разрешить весь исходящий трафик"
-      v4_cidr_blocks = ["0.0.0.0/0"]
+      v4_cidr_blocks = ["10.0.1.0/24"]
       from_port      = 0
       to_port        = 65365
     }
