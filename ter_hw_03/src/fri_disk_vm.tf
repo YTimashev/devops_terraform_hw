@@ -1,6 +1,7 @@
 
 #Создаем ВМ
 resource "yandex_compute_instance" "vm_fri_disks" {
+  #depends_on  = [yandex_compute_disk.volume]
   name        = "vm-fri-disks"
   platform_id = "standard-v1"
 
@@ -52,7 +53,6 @@ resource "yandex_compute_disk" "volume" {
   zone  = var.default_zone
   size  = 1
 }
-
 
 /*
 #Переменная - дополнительные диски
